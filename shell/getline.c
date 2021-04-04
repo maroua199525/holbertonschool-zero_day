@@ -1,28 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <unistd.h>
-int main(void)
-{
-	char *ch;
-	FILE *fg;
-	int i = 0;
-	while (i < 10)
-	{
-	printf("$ ");
-	ch = _getline(fg);
-	}
-	return (0);
-}
-char *_getline (FILE *fp)
+#include "shell.h"
+/*
+ *_readline - read a line from insert
+ *Return: void
+ */
+void *_readline(void)
 {
 
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	read = getline(&line, &len, fp);
+	read = getline(&line, &len, stdin);
 	if (read == -1)
 	{
 		free(line);
