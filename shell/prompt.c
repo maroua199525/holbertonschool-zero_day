@@ -1,3 +1,4 @@
+#include<signal.h>
 #include "shell.h"
 /**
  *main - main function
@@ -14,10 +15,18 @@ int main()
   cmd = malloc (sizeof(char) * SIZE + 1);
   if (cmd == NULL)
     return (-1);
+ 
   while (i < 1)
-  {
-    
+    {
+    if (isatty(STDIN_FILENO))
+    {
       printf("$ ");
+    }
+    signal(SIGINT,sig_handler); // Register signal handler
+    for(int i=1;;i++){    //Infinite loop
+      printf("%d : Inside main function\n",i);
+      sleep(1);  // Delay for 1 second
+    }
       line = _readline();
       command = parse_line(line);
       if (fork() != 0)
@@ -32,6 +41,8 @@ int main()
       }
       if (_strcmp(*command, "exit") == 0)
 	break;
-  }
+    
+  } 
+    
   return (0);
 }
