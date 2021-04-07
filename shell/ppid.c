@@ -5,10 +5,10 @@
  *
  * Return: my_ppid
  */
-pid_t _pid(void)
+pid_t _ppid(void)
 {
   pid_t my_ppid;
 
-  my_pid = getpid();
-  return (my_pid);
+   my_ppid = getpid();
+  return (my_ppid);
 }
