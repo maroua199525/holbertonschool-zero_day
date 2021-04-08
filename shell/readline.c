@@ -19,7 +19,7 @@ char *_readline(void)
 		perror("Error:");
 		exit(EXIT_SUCCESS);
 	}
-	if (line[read - 1] == '\n' || line[read - 1] == '\t')
+	/*if (line[read - 1] == '\n' || line[read - 1] == '\t')
 	  line[read - 1] = '\0';
 	for (i = 0; line[i]; i++)
 	  {
@@ -28,7 +28,7 @@ char *_readline(void)
 		line[i] = '\0';
 		break;
 	      }
-	  }
+	      }*/
 
 	return (line);
 }

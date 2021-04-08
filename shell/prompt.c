@@ -15,19 +15,17 @@ int main()
   cmd = malloc (sizeof(char) * SIZE + 1);
   if (cmd == NULL)
     return (-1);
- 
+  /*signal(SIGINT, sig_handler);*/
+  signal(SIGINT, sig_handler);
   while (i < 1)
     {
-    if (isatty(STDIN_FILENO))
+    if (isatty(STDIN_FILENO) == 1)
     {
       printf("$ ");
-    }
-    signal(SIGINT,sig_handler); // Register signal handler
-    for(int i=1;;i++){    //Infinite loop
-      printf("%d : Inside main function\n",i);
-      sleep(1);  // Delay for 1 second
-    }
+    } 
       line = _readline();
+      if (line[0] == '\0')
+	continue;
       command = parse_line(line);
       if (fork() != 0)
 	wait(&k);
@@ -41,6 +39,7 @@ int main()
       }
       if (_strcmp(*command, "exit") == 0)
 	break;
+    
     
   } 
     

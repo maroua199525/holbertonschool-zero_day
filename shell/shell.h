@@ -23,6 +23,7 @@
 char **parse_line(char *line);
 char *_readline(void);
 void _printenv(char **environ);
+void sig_handler(int signum);
 char *_strcat(char *dest, char *src);
 char *_strncpy(char *dest, char *src, int n);
 int _strcmp(char *s1, char *s2);
