@@ -1,0 +1,24 @@
+#include "shell.h"
+#include <string.h>
+/**
+ *_readline - read a line from insert
+ *Return: void
+ */
+char *_readline(void)
+{
+
+		char *line = NULL;
+	size_t len = 0, i;
+	ssize_t read;
+	
+
+	read = getline(&line, &len, stdin);
+	if (read == -1)
+	{
+			free(line);
+		perror("Error:");
+		exit(EXIT_SUCCESS);
+	}
+
+	return (line);
+}
