@@ -2,13 +2,13 @@
 #include <string.h>
 /**
  *_readline - read a line from insert
- *Return: void
+ *Return: line
  */
 char *_readline(void)
 {
 
-		char *line = NULL;
-	size_t len = 0, i;
+	char *line = NULL;
+	size_t len = 0;
 	ssize_t read;
 	
 
@@ -16,7 +16,7 @@ char *_readline(void)
 	if (read == -1)
 	{
 			free(line);
-		perror("Error:");
+		perror("hsh");
 		exit(EXIT_SUCCESS);
 	}
 

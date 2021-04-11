@@ -1,47 +1,57 @@
-#include "shell.h"
+#include "shell"
 
-char *search_path(char **env)
+
+/**
+* add_command - add command to the path
+* @cmd: the command to look for its path
+*Return: string: full path with the command
+*/
+
+char *add_command(char *cmd)
 {
-	char *path = "PATH=";
-	int i = 0; j = 0;
+	char *path, *command_path;
+	char *path_parser;
+	struct stat st;
 
-	while (env[i])
+	path = _getenv("PATH");
+	path_parser = strtok(path, ":");
+	while (path_parser != NULL)
 	{
-		while (j < 5)
+	command_path = append_pathcmd(*cmd, path_parser);
+		if (stat(command_path, &st) == 0)
 		{
-			if (path[j] != env[i][j])
-			{
-				break;
-			}
-			j++;
-			if (j == 4)
-			{
-				return (env[i]);
-			}
+			return(command_path);
 		}
+
+		path_parser = strtok(NULL, ":");
 	}
+	free(path_parser);
+	free(command_path);
+
 	return (NULL);
 }
 
-int add_command(char **cmd)
+/**
+ * append_pathcmd - concat the command with the full path
+ * @cmd: the command to concat with its path
+ *@directories: string
+ *Return: string: full path with the command
+ */
+char *append_pathcmd(char *cmd, char *directories)
 {
-	char *path;
-	char **path_parser;
-	int i = 0;
-	struct stat st;
+	char *append;
+	int cmd_length, dir_length, append_length;
 
-	path = search_path(env);
-	path_parser = parse_line(PATH, ":");
-	while (path_parser[i] != '\0')
-	{
-	command_path = append(*cmd, path_parse[i]);
-		if (stat(command_path, &st) == 0)
-		{
-			*cmd = _strdup(cmd_path);
-			return (1);
-		}
-	}
-	free(path);
-
-	return (-1);
-	
+	cmd_length = _strlen(cmd);
+	dir_length = _strlen(directories);
+	append_length = cmd_length + dir_length + 2;
+	append = malloc(sizeof(char) * append_length);
+    if (append == NULL)
+    {
+        return (NULL);
+    }
+	append = _strcpy(append, directories);
+    append = _strcat(append, "/");
+	append = _strcat (append, cmd);
+	return (append);
+}

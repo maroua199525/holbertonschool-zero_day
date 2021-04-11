@@ -1,6 +1,11 @@
 #include "shell.h"
-#include <string.h>
 
+/**
+* parse_line - parses the input 
+* @line: string
+*@DELIMIT: the delimet 
+*Return: array of string
+*/
 char **parse_line(char *line, char *DELIMIT)
 {
   char **array;
@@ -12,7 +17,7 @@ char **parse_line(char *line, char *DELIMIT)
   array = malloc(sizeof(char *) * len);
   if (array == NULL)
     {
-      write(stderr, "error\n", 6);
+      write(STDERR_FILENO, "error\n", 6);
       exit(EXIT_FAILURE);
     }
 

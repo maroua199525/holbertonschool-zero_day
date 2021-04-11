@@ -11,11 +11,10 @@
 #include <signal.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stddef.h>
 /************ MACROS **********/
 
-#define BUFSIZE 1024
-#define DELIMIT " \t\r\n\a"
-
+#define SIZE 1024
 
 /**********GLOBAL VARIABLE **************/
 
@@ -24,30 +23,37 @@ extern char **environ;
 /********** FUNCTION Recreation *************/
 
 char *_strcat(char *dest, char *src);
-char *_strncpy(char *dest, char *src, int n);
+char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 int _strlen(char *s);
 char *_strdup(char *str);
-/*********** Function parser *****************/
-char **parse_line(char *line);
+/*********** Function shell *****************/
+char **parse_line(char *line, char *DELIMIT);
 char *_readline(void);
-void _printenv(char **environ);
+char *_getenv(char *name);
+int print_env(char **environ);
 void sig_handler(int signum);
-int exec_v(char *cmd, char **commande, char **env);
-
-/************* Function******************/
+int exec_cmd(char **cmd);
+char *append_pathcmd(char *cmd, char *directories);
+int check_builtin(char **command);
+int *change_dir (char **cmd);
+char *add_command(char *cmd);
 void prompt(void);
-void signal_to_handel(int sig);
+int fun_builtin(char **command);
+int *change_dir (char **cmd);
+char *_getenv(char *name);
+/**************** STRUCT********************/
 /**
  * struct bulltin - execute function bultin
  * @cmd:pointer to char
  * @fun: function to execute
  */
 
-typedef struct  bulltin
+typedef struct  bull
 {
 	char *cmd;
-	int (*fun)(char **line);
-} built_in ;
+
+	int (*fun)(char **arg);
+}built_in;
 
 #endif
