@@ -16,15 +16,14 @@ char *_getenv(char *var_name)
 	{
 		if (var_name[j] == environ[i][j])
 		{
-			while (var_name[j])
+		    for (j = 0; var_name[j]; j++)
 			{
 				if (var_name[j] != environ[i][j])
 					break;
-				j++;
 			}
 			if (var_name[j] == '\0')
 			{
-				variable_value = (environ[i]);
+				variable_value = (environ[i] + j + 1);
 				return (variable_value);
 			}
 		}

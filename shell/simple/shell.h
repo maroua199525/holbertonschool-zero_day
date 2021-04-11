@@ -15,7 +15,7 @@
 /************ MACROS **********/
 
 #define SIZE 1024
-
+#define PATH_MAX 1020
 /**********GLOBAL VARIABLE **************/
 
 extern char **environ;
@@ -36,11 +36,10 @@ void sig_handler(int signum);
 int exec_cmd(char **cmd);
 char *append_pathcmd(char *cmd, char *directories);
 int check_builtin(char **command);
-int *change_dir (char **cmd);
+int change_dir(char **cmd);
 char *add_command(char *cmd);
 void prompt(void);
 int fun_builtin(char **command);
-int *change_dir (char **cmd);
 char *_getenv(char *name);
 /**************** STRUCT********************/
 /**
@@ -49,11 +48,11 @@ char *_getenv(char *name);
  * @fun: function to execute
  */
 
-typedef struct  bull
+typedef struct  bulltin
 {
 	char *cmd;
 
 	int (*fun)(char **arg);
-}built_in;
+} built_in;
 
 #endif

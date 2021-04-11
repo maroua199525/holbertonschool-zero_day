@@ -18,7 +18,6 @@ int main(void)
     {
       prompt();
     } 
-    }
       line = _readline();
       argv = parse_line(line, " \t\r\n\a");
      /* if (_strcmp(argv[0], "exit") == 0)
@@ -44,6 +43,6 @@ int main(void)
         
       
        free (argv);
-    
+    }
   return (0);
 }

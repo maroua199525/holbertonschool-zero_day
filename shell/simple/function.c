@@ -7,15 +7,15 @@
  */
 int _strlen(char *s)
 {
-  int length, i;
+	int length, i;
 
-  i = 0;
-  while (s[i] != '\0')
-    {
-      length = length + 1;
-      i++;
-    }
-  return (length);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		length = length + 1;
+		i++;
+	}
+	return (length);
 }
 
 /**
@@ -26,19 +26,19 @@ int _strlen(char *s)
  */
 char *_strcpy(char *dest, char *src)
 {
-  int i, j;
+	int i, j;
 
-  i = 0;
-  while (src[i] != '\0')
-    {
-      i++;
-    }
-  j = i;
-  for (i = 0; i <= j; i++)
-    {
-      dest[i] = src[i];
-    }
-  return (dest);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		i++;
+	}
+	j = i;
+	for (i = 0; i <= j; i++)
+	{
+		dest[i] = src[i];
+	}
+	return (dest);
 }
 /**
  * *_strcmp - compare the string
@@ -48,41 +48,46 @@ char *_strcpy(char *dest, char *src)
  */
 int _strcmp(char *s1, char *s2)
 {
-  int i, p;
+	int i, p;
 
-  i = 0;
-  while (s1[i] != '\0' && s2[i] != '\0')
-    {
-      if (s1[i] == s2[i])
-	p = 0;
-      else
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-	  p =  (s1[i] - s2[i]);
-	  s1[i + 1] = '\0';
+		if (s1[i] == s2[i])
+		p = 0;
+		else
+		{
+			p =  (s1[i] - s2[i]);
+			s1[i + 1] = '\0';
+		}
+			i++;
 	}
-      i++;
-    }
-  return (p);
+	return (p);
 }
+/**
+ * _strdup - duplicate the string
+ *@str:a string
+ * Return:returns a pointer to a new string which is a duplicate of the string
+ */
 
 char *_strdup(char *str)
 {
-  int i = 0, len;
-  char *dest;
+	int i = 0, len;
+	char *dest;
 
-  if (str == NULL)
-    return (NULL);
-  len = _strlen(str);
-  dest = malloc(len + 1);
-  if (dest == NULL)
-    return (NULL);
-  while (i < len)
-    {
-    dest[i] = str[i];
-    i++;
-    }
-  dest[i] = '\0';
-  return (dest);
+	if (str == NULL)
+		return (NULL);
+	len = _strlen(str);
+	dest = malloc(len + 1);
+	if (dest == NULL)
+		return (NULL);
+	while (i < len)
+	{
+		dest[i] = str[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 /**
  * _strcat - rev the string
@@ -92,20 +97,20 @@ char *_strdup(char *str)
  */
 char *_strcat(char *dest, char *src)
 {
-  int i, j;
+	int i, j;
 
-  i = 0;
-  while (dest[i] != '\0')
-    {
-      i++;
-    }
-  j = 0;
-  while (src[j] != '\0')
-    {
-      dest[i] = src[j];
-      i++;
-      j++;
-    }
-  dest[i] = '\0';
-  return (dest);
+	i = 0;
+	while (dest[i] != '\0')
+	{
+		i++;
+	}
+	j = 0;
+	while (src[j] != '\0')
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

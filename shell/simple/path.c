@@ -1,4 +1,4 @@
-#include "shell"
+#include "shell.h"
 
 
 /**
@@ -13,14 +13,14 @@ char *add_command(char *cmd)
 	char *path_parser;
 	struct stat st;
 
-	path = _getenv("PATH");
+	path = getenv("PATH");
 	path_parser = strtok(path, ":");
 	while (path_parser != NULL)
 	{
-	command_path = append_pathcmd(*cmd, path_parser);
+	command_path = append_pathcmd(cmd, path_parser);
 		if (stat(command_path, &st) == 0)
 		{
-			return(command_path);
+			return (command_path);
 		}
 
 		path_parser = strtok(NULL, ":");
@@ -46,12 +46,12 @@ char *append_pathcmd(char *cmd, char *directories)
 	dir_length = _strlen(directories);
 	append_length = cmd_length + dir_length + 2;
 	append = malloc(sizeof(char) * append_length);
-    if (append == NULL)
-    {
-        return (NULL);
-    }
+	if (append == NULL)
+	{
+		return (NULL);
+	}
 	append = _strcpy(append, directories);
-    append = _strcat(append, "/");
-	append = _strcat (append, cmd);
+	append = _strcat(append, "/");
+	append = _strcat(append, cmd);
 	return (append);
 }
