@@ -37,10 +37,9 @@ int main(void)
         {*/
          /* if (stat(argv[0], &st) != 0)*/
     
-          cmd = strdup(argv[0]);
-          cmd = add_command(cmd);
-          printf("argv[0] = %s \n",argv[0]);
-          exec_cmd (cmd,argv);
+          add_command(argv);
+          /*printf("argv[0] = %s \n",argv[0]);*/
+          exec_cmd (argv[0], argv);
         
       
        free (argv);

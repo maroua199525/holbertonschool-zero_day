@@ -7,10 +7,9 @@
 *Return: string: full path with the command
 */
 
-char *add_command(char *cmd)
+int add_command(char **cmd)
 {
-	char *path , *command_path , *path2 ;
-	char *path_parser ,  *cmdd;
+	char *path , *command_path, *path_parser;
 	struct stat st;
 
 	path = getenv("PATH");
@@ -19,20 +18,23 @@ char *add_command(char *cmd)
 	printf(" path parser %s", path_parser);
 	while (path_parser != NULL)
 	{
-	command_path = append_pathcmd(cmd, path_parser);
-	printf("command is %s",command_path);
+	command_path = append_pathcmd(*cmd, path_parser);
+	/*printf("command is %s", command_path);*/
 		if (stat(command_path, &st) == 0)
 		{
-			cmdd = _strdup(command_path);
-			printf("command is %s",cmdd);
-			return (cmdd);
+			*cmd = _strdup(command_path);
+			/*printf("command is %s",cmdd);*/
+			free(command_path);
+			free(path_parser);
+			return (0);
 		}
+		free (command_path);
 		path_parser = strtok(NULL, ":");
-			printf(" path parser %s", path_parser);
+			/*printf(" path parser %s", path_parser);*/
 
 	}
-
-	return (NULL);
+	free(path);
+	return (1);
 }
 
 /**
@@ -43,13 +45,11 @@ char *add_command(char *cmd)
  */
 char *append_pathcmd(char *cmd, char *directories)
 {
-	char *append = NULL;
-	int cmd_length = 0, dir_length = 0, append_length = 0;
+	char *append;
+	size_t append_length;
 
-	printf("%s\n",cmd);
-	cmd_length = _strlen(cmd);
-	dir_length = _strlen(directories);
-	append_length = cmd_length + dir_length + 2;
+	/*printf("%s\n",cmd);*/
+	append_length = _strlen(cmd) + _strlen(directories);
 	append = malloc(sizeof(char) * append_length);
 	if (append == NULL)
 	{

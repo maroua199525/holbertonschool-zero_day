@@ -5,7 +5,7 @@
  * Return: 0.
  */
 
-int exec_cmd(char *cmd,char **argv)
+int exec_cmd(char *cmd, char **argv)
 {
 	pid_t pid;
 	int status;
