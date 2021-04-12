@@ -7,19 +7,23 @@
 
 char *_getenv(char *var_name)
 {
-	int i, j = 0;
+	int i, j;
 	char *variable_value;
 
-	if (var_name != NULL)
+	if (var_name == NULL)
 		return (NULL);
 	for (i = 0; environ[i]; i++)
 	{
+		j = 0;
 		if (var_name[j] == environ[i][j])
 		{
-		    for (j = 0; var_name[j]; j++)
+			while (var_name[j])
 			{
 				if (var_name[j] != environ[i][j])
+				{
 					break;
+				}
+				j++;
 			}
 			if (var_name[j] == '\0')
 			{
@@ -28,14 +32,6 @@ char *_getenv(char *var_name)
 			}
 		}
 	}
-    return (NULL);
+	return (NULL);
 }
 
-int main(void)
-{
-    char *path = "PATH";
-    char *ch;
-    ch = _getenv(path);
-    printf("%s\n", ch);
-    return (0);
-}

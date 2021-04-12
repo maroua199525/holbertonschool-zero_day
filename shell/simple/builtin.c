@@ -91,12 +91,12 @@ int change_dir(char **cmd)
 
 		if (cmd[1] == NULL)
 		{
-			new_dir  = (getenv("HOME"));
+			new_dir  = (_getenv("HOME"));
 			result = chdir(new_dir);  /* chdir() returns zero (0) success*/
 		}
 		else if (_strcmp(cmd[1], "-") == 0)
 		{
-			new_dir = (getenv("OLDPWD"));
+			new_dir = (_getenv("OLDPWD"));
 			result = chdir(new_dir);
 		}
 		else

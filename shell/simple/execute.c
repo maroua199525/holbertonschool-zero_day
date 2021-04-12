@@ -1,41 +1,42 @@
 #include "shell.h"
 /**
- * _exec - execve the comands from line.
- * @cmd: first Command to execute.
- * @command: another Command to execute.
- * @env: string
- *
+ * exec_cmd - execve the comands from line.
+ * @cmd: Command to execute.
  * Return: 0.
  */
 
-int exec_cmd(char **cmd)
+int exec_cmd(char *cmd,char **argv)
 {
-  pid_t pid;
-  int status;
- if (cmd == NULL || cmd[0] == NULL)
-    return (-1);
-  pid = fork();
-  if (pid == 0) {
-    // Child process
-    if (execve(cmd[0], cmd, environ) == -1) {
-      perror("hsh");
-      exit(0);
-      return (-1);
-    }
-  }
-else if (pid == -1)
-{
-perror("forking failed");
-exit(-1);
-return (-1);
-}
-  
-  else
-  {
-  // Parent process
-      waitpid(pid, &status, WUNTRACED);
-  }
-
-  return (0);
+	pid_t pid;
+	int status;
+	
+	printf("command in excute = %s\n",cmd);
+	if (cmd == NULL || argv[0] == NULL)
+ 	{
+		return (-1);
+ 	}
+	pid = fork();
+	if (pid == 0)
+	{
+		/* Child process */
+		if (execve(cmd, argv, environ) == -1)
+		{
+			perror("hsh");
+			exit(0);
+			return (-1);
+		}
+	}
+	else if (pid == -1)
+	{
+		perror("forking failed");
+		exit(-1);
+		return (-1);
+	}
+	else
+	{
+	/* Parent process */
+		waitpid(pid, &status, WUNTRACED);
+	}
+return (0);
 }
 

@@ -6,7 +6,7 @@
 *@DELIMIT: the delimet
 *Return: array of string
 */
-char **parse_line(char *line, char *DELIMIT)
+char **parse_line(char *line, char *delim)
 {
 	char **array;
 	char *token;
@@ -21,12 +21,11 @@ char **parse_line(char *line, char *DELIMIT)
 		exit(EXIT_FAILURE);
 	}
 
-	token = strtok(line, DELIMIT);
+	token = strtok(line, delim);
 	while (token != NULL)
 	{
 		array[i++] = token;
-		token = strtok(NULL, DELIMIT);
-		token = strtok(NULL, DELIMIT);
+		token = strtok(NULL, delim);
 	}
 	array[i] = NULL;
 

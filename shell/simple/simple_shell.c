@@ -8,7 +8,7 @@ int main(void)
 {
   
   int status = 1;
-  char *line, **argv;
+  char *line, *cmd, **argv;
   struct stat st;
   /*signal(SIGINT, sig_handler);*/
   signal(SIGINT, sig_handler);
@@ -19,7 +19,7 @@ int main(void)
       prompt();
     } 
       line = _readline();
-      argv = parse_line(line, " \t\r\n\a");
+      argv = parse_line(line, DELIMIT);
      /* if (_strcmp(argv[0], "exit") == 0)
 		{
         free(argv);
@@ -37,9 +37,10 @@ int main(void)
         {*/
          /* if (stat(argv[0], &st) != 0)*/
     
-          argv[0] = add_command(argv[0]);
-          
-          exec_cmd (argv);
+          cmd = strdup(argv[0]);
+          cmd = add_command(cmd);
+          printf("argv[0] = %s \n",argv[0]);
+          exec_cmd (cmd,argv);
         
       
        free (argv);
