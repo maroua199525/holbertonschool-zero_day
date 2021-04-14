@@ -22,6 +22,7 @@
 extern char **environ;
 
 /********** FUNCTION Recreation *************/
+void free_array(char **str);
 
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
@@ -34,14 +35,17 @@ char *_readline(void);
 char *_getenv(char *name);
 int print_env(char **environ);
 void sig_handler(int signum);
-int exec_cmd(char *cmd,char **argv);
-int add_command(char **cmd);
+int exec_cmd(char **array);
+void split(char *str, char *token[]);
 int check_builtin(char **command);
 int change_dir(char **cmd);
 char *append_pathcmd(char *cmd, char *directories);
 void prompt(void);
 int fun_builtin(char **command);
 char *_getenv(char *name);
+int path_command(char **argv);
+void print_number(int n);
+int _putchar(char c);
 /**************** STRUCT********************/
 /**
  * struct bulltin - execute function bultin

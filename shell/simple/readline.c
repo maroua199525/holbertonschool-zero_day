@@ -17,6 +17,20 @@ char *_readline(void)
 		perror("hsh");
 		exit(EXIT_SUCCESS);
 	}
-
 	return (line);
+}
+/**
+*free_array - free an array
+*@str : an array of pointrs
+*Return: void
+*/
+void free_array(char **str)
+{
+	int i = 0;
+
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+	}
+	free(str);
 }

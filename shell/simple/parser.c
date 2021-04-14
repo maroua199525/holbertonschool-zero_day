@@ -10,11 +10,11 @@ char **parse_line(char *line, char *delim)
 {
 	char **array;
 	char *token;
-	int i = 0, len = SIZE;
+	int i = 0;
 
 	if (line == NULL)
 		return (NULL);
-	array = malloc(sizeof(char *) * len);
+	array = malloc(sizeof(char *) * SIZE);
 	if (array == NULL)
 	{
 		write(STDERR_FILENO, "error\n", 6);

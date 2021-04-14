@@ -7,9 +7,8 @@
 int main(void)
 {
   
-  int status = 1;
-  char *line, *cmd, **argv;
-  struct stat st;
+  int status = 1, blt = -1;
+  char *line = NULL, **argv;
   /*signal(SIGINT, sig_handler);*/
   signal(SIGINT, sig_handler);
   while (status)
@@ -19,30 +18,36 @@ int main(void)
       prompt();
     } 
       line = _readline();
+      if (line[0] == '\n' )
+      {
+        free(line);
+        continue;
+      }
       argv = parse_line(line, DELIMIT);
      /* if (_strcmp(argv[0], "exit") == 0)
 		{
-        free(argv);
-        exit(1);
-		}
-      if (argv == NULL || argv[0] == NULL)
-      {
+        break;
+		}*/
+      
         blt = check_builtin(argv);
         if (blt == 1)
         {
           return (fun_builtin(argv));
         }
       
-	      else 
-        {*/
-         /* if (stat(argv[0], &st) != 0)*/
+	      /*else 
+        {
+         if (stat(argv[0], &st) != 0)
     
-          add_command(argv);
-          /*printf("argv[0] = %s \n",argv[0]);*/
-          exec_cmd (argv[0], argv);
+          
+          
+    path_command(argv);
         
       
-       free (argv);
+    }*/
     }
+    free(line);
+    free_array(argv);
   return (0);
 }
+

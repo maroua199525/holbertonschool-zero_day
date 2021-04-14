@@ -7,15 +7,13 @@
  */
 int _strlen(char *s)
 {
-	int length, i;
+	int len = 0;
 
-	i = 0;
-	while (s[i] != '\0')
+	while (s[len] != '\0')
 	{
-		length = length + 1;
-		i++;
+		len++;
 	}
-	return (length);
+	return (len);
 }
 
 /**
@@ -26,9 +24,8 @@ int _strlen(char *s)
  */
 char *_strcpy(char *dest, char *src)
 {
-	int i, j;
+	int i = 0, j;
 
-	i = 0;
 	while (src[i] != '\0')
 	{
 		i++;
@@ -36,7 +33,7 @@ char *_strcpy(char *dest, char *src)
 	j = i;
 	for (i = 0; i <= j; i++)
 	{
-			dest[i] = src[i];
+		dest[i] = src[i];
 	}
 	return (dest);
 }
