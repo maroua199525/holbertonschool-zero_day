@@ -27,27 +27,25 @@ int main(void)
      /* if (_strcmp(argv[0], "exit") == 0)
 		{
         break;
-		}*/
-      
-        blt = check_builtin(argv);
-        if (blt == 1)
-        {
-          return (fun_builtin(argv));
-        }
-      
-	      /*else 
-        {
-         if (stat(argv[0], &st) != 0)
+		}
+       if (_strcmp(argv[0], "env") == 0)
+		{
+        return (print_env());
+		}
+    blt = check_builtin(argv[0]);
+    if (blt = 1)
+     {
+        return (fun_builtin(argv));
+     }
+    else
+    {*/
+      path_command(argv);
     
-          
-          
-    path_command(argv);
-        
-      
-    }*/
+    
     }
     free(line);
     free_array(argv);
+    
   return (0);
 }
 

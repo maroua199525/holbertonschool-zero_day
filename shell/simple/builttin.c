@@ -1,69 +1,41 @@
 #include "shell.h"
+
 /**
  * check_builtin - check if the command passed is a builtin
  * @command: string to check
  *Return: -1 on failure 1 on success
  */
 
-
-int check_builtin(char **command)
-{
-		int i = 0;
-		built_in built[] = {
-						{"exit", NULL},
-						{"cd", NULL},
-						{"env", NULL},
-						{NULL, NULL}
-};
-
-if (*command == NULL)
-{
-	return (-1);
-}
-while ((built + i)->cmd)
-{
-	if (_strcmp(command[0], (built + i)->cmd) == 0)
-	{
-		return (1);
-	}
-		i++;
-}
-
-	return (-1);
-}
-
-/**
- * fun_builtin - return the function of the command bultin passed
- * @command: string to return for it the function
- *Return: int
- */
-
 int fun_builtin(char **command)
 {
-		int i = 0;
-		built_in built[] = {
-						{"env", print_env},
-						/*{"cd", change_dir},*/
-						{NULL, NULL}
-};
-	while ((built + i)->cmd)
-	{
-		if (_strcmp(command[0], (built + i)->cmd) == 0)
-		{
-			return ((built + i)->fun(command));
-		}
-		i++;
-	}
+	int blt = 0;
 
-	return (-1);
+	if (_strcmp(command[0], "exit") == 0)
+	{
+		if (command[1] == NULL)
+		{
+			/*free_array(command);*/
+			exit(0);
+		}
+	}
+	if (_strcmp(command[0], "env") == 0)
+	{
+		blt = print_env();
+		return (blt);
+	}
+	if (_strcmp(command[0], "cd") == 0)
+	{
+		
+		return (change_dir(command));
+	}
+	return (0);
 }
 /**
 * print_env - prints all the environment variables
-*@environ: global variable
 *Return: 0
 */
 
-int print_env(char **environ)
+int print_env(void)
 {
 	char **str;
 	int len, i = 0;
@@ -78,6 +50,7 @@ int print_env(char **environ)
 	}
 		return (0);
 }
+
 /**
  *change_dir - change directory
  *cmd: string
@@ -113,4 +86,27 @@ int change_dir(char **cmd)
 			getcwd(cwd, sizeof(cwd));
 		}
 		return (0);
+}
+int check_builtin(char *argv)
+{
+		int i = 0;
+		char *command[3];
+		command[0] = "exit";
+		command[1] = "env";
+		command[2] = "cd";	
+
+if (*command == NULL)
+{
+	return (-1);
+}
+while (i < 3)
+{
+	if (_strcmp(argv, command[i]) == 0)
+	{
+		return (1);
+	}
+		i++;
+}
+
+	return (-1);
 }

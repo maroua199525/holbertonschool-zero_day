@@ -33,11 +33,13 @@ char *_strdup(char *str);
 char **parse_line(char *line, char *del);
 char *_readline(void);
 char *_getenv(char *name);
-int print_env(char **environ);
+int print_env();
 void sig_handler(int signum);
 int exec_cmd(char **array);
 void split(char *str, char *token[]);
-int check_builtin(char **command);
+/*int check_builtin(char **command);*/
+int check_builtin(char *argv);
+int fun_builtin(char **command);
 int change_dir(char **cmd);
 char *append_pathcmd(char *cmd, char *directories);
 void prompt(void);
