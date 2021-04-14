@@ -22,21 +22,13 @@ int exec_cmd(char **array)
 	}
 	if (pid == 0)
 	{
-		if (execve(array[0], array, NULL) == -1)
-		{
-			write(1, "hsh: ", 5);
-			/*print_number(count);*/
-			write(1, ": ", 2);
-			write(1, array[0], _strlen(array[0]));
-			write(1, ": not found\n", 13);
-			free_array(array);
-			exit(127);
-		}
+		 execve(array[0], array, NULL);
+	}
 		else
 		{
 			wait(&status);
 		}
-	}
+	
 	return (0);
 }
 

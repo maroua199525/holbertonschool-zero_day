@@ -7,23 +7,23 @@
 int main(void)
 {
   
-  int status = 1, blt = -1;
+  int status = 1;
   char *line = NULL, **argv;
   /*signal(SIGINT, sig_handler);*/
   signal(SIGINT, sig_handler);
   while (status)
-    {
+  {
     if (isatty(STDIN_FILENO))
     {
       prompt();
     } 
-      line = _readline();
-      if (line[0] == '\n' )
-      {
-        free(line);
-        continue;
-      }
-      argv = parse_line(line, DELIMIT);
+    line = _readline();
+    if (line[0] == '\n' )
+    {
+      free(line);
+      continue;
+    }
+    argv = parse_line(line, DELIMIT);
      /* if (_strcmp(argv[0], "exit") == 0)
 		{
         break;
@@ -44,8 +44,7 @@ int main(void)
     
     }
     free(line);
-    free_array(argv);
-    
+    free_array(argv);  
   return (0);
 }
 

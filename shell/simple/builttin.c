@@ -14,7 +14,7 @@ int fun_builtin(char **command)
 	{
 		if (command[1] == NULL)
 		{
-			/*free_array(command);*/
+			free_array(command);
 			exit(0);
 		}
 	}
@@ -87,6 +87,12 @@ int change_dir(char **cmd)
 		}
 		return (0);
 }
+/**
+ * check_builtin - check if the command passed is a builtin
+ * @argv: string to check
+ *Return: -1 on failure 1 on success
+ */
+
 int check_builtin(char *argv)
 {
 		int i = 0;
